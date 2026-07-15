@@ -1,0 +1,12 @@
+{
+  "name": "Dhurta — The Sovereign Browser",
+  "short_name": "Dhurta",
+  "description": "A privacy-first desktop browser. Local-first, no telemetry, real Tor integration.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#0a0a0f",
+  "theme_color": "#00f5d4",
+  "icons": [
+    { "src": "assets/img/dhurta-logo.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
