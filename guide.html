@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guide — Dhurta</title>
+<meta name="description" content="A step-by-step guide to setting up privacy, connecting browsers, and using Dhurta's core features.">
+<link rel="icon" href="assets/img/dhurta-logo.png">
+<link rel="stylesheet" href="assets/css/styles.css">
+<style>
+  .page-hero { padding: 70px 0 20px; text-align: center; }
+  .page-hero h1 { font-size: clamp(2rem, 4.4vw, 3.2rem); }
+  .page-hero p { color: var(--ink-dim); max-width: 54ch; margin: 18px auto 0; text-transform: none; }
+
+  .toc { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 34px; }
+  .toc a {
+    text-decoration: none; font-family: ui-monospace, monospace; font-size: 0.76rem;
+    color: var(--ink-dim); border: 1px solid var(--line); padding: 8px 16px; border-radius: 20px;
+  }
+  .toc a:hover { color: var(--cyan); border-color: var(--line-strong); }
+
+  .step {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center;
+    padding: 64px 0; border-top: 1px solid var(--line);
+  }
+  .step:nth-child(even) .step-copy { order: 2; }
+  .step-num {
+    font-family: ui-monospace, monospace; font-size: 0.76rem; color: var(--magenta-soft);
+    letter-spacing: 0.14em; margin-bottom: 10px; display: block;
+  }
+  .step-copy h3 { font-size: 1.5rem; text-transform: none; margin-bottom: 14px; }
+  .step-copy p { color: var(--ink-dim); text-transform: none; margin-bottom: 12px; }
+  .step-copy ol { padding-left: 20px; color: var(--ink-dim); margin: 16px 0; }
+  .step-copy ol li { margin-bottom: 8px; }
+  .step-copy ol li strong { color: var(--ink); }
+  .step-tip {
+    margin-top: 16px; padding: 12px 14px; border-radius: 8px;
+    border: 1px solid var(--line); background: color-mix(in srgb, var(--cyan) 6%, transparent);
+    font-size: 0.85rem; color: var(--ink-dim);
+  }
+  .step-tip strong { color: var(--cyan); }
+
+  .cursor-blip { width: 9px; height: 9px; border-radius: 50%; background: var(--cyan); display: inline-block; box-shadow: 0 0 8px var(--cyan); animation: blip 1.6s ease-in-out infinite; }
+  @keyframes blip { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .cursor-blip { animation: none; } }
+
+  @media (max-width: 900px) {
+    .step { grid-template-columns: 1fr; }
+    .step:nth-child(even) .step-copy { order: 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <img src="assets/img/dhurta-logo.png" alt="Dhurta emblem">
+      <span class="brand-word">Dhurta</span>
+    </a>
+    <nav class="links">
+      <a href="index.html">Home</a>
+      <a href="features.html">Features</a>
+      <a href="modes.html">Modes</a>
+      <a href="tools.html">Tools</a>
+      <a href="guide.html" aria-current="page">Guide</a>
+      <a href="troubleshooting.html">Troubleshooting</a>
+    </nav>
+    <a href="index.html#download" class="btn btn-primary">Download</a>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">Getting Started</span>
+      <h1>Set up Dhurta like you mean it.</h1>
+      <p>Six steps from install to a fully locked-down setup, illustrated with real screenshots of v1.0.8 where noted.</p>
+      <div class="toc">
+        <a href="#step-1">1. First Launch</a>
+        <a href="#step-2">2. Ghost Mode</a>
+        <a href="#step-3">3. VPN &amp; Security</a>
+        <a href="#step-4">4. Anti-Fingerprint</a>
+        <a href="#step-5">5. Connect</a>
+        <a href="#step-6">6. Transparency</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+
+    <div class="step" id="step-1">
+      <div class="step-copy reveal">
+        <span class="step-num">STEP 1</span>
+        <h3>First launch</h3>
+        <p>Dhurta opens straight to a New Tab with your Speed Dial — no setup wizard, no account prompt.</p>
+        <ol>
+          <li><strong>Install</strong> and open Dhurta from the Start Menu or desktop shortcut.</li>
+          <li>The <strong>sidebar</strong> on the left is your control surface — every icon opens a panel over the current page.</li>
+          <li>Pin the tabs you use most from the <strong>Speed Dial</strong> tiles.</li>
+        </ol>
+        <div class="step-tip"><strong>Tip —</strong> right-click any tab for duplicate, ghost-tab, or bookmark shortcuts.</div>
+      </div>
+      <div class="step-visual reveal">
+        <div class="shot-frame"><img src="assets/img/screens/home.png" alt="Dhurta new-tab screen, real capture"></div>
+        <p class="render-note">Real screenshot.</p>
+      </div>
+    </div>
+
+    <div class="step" id="step-2">
+      <div class="step-copy reveal">
+        <span class="step-num">STEP 2</span>
+        <h3>Turn on Ghost Mode</h3>
+        <p>Ghost Mode opens a session that lives entirely in memory — nothing written to disk, cleared the moment the tab closes.</p>
+        <ol>
+          <li>Right-click the <strong>+</strong> new-tab button, or use the tab context menu.</li>
+          <li>Choose <strong>Ghost Tab</strong>.</li>
+          <li>Browse as normal — the tab is tagged so you always know it's ephemeral.</li>
+        </ol>
+        <div class="step-tip"><strong>Note —</strong> Ghost Mode now runs real Tor onion routing — verify it yourself at <code>check.torproject.org</code> from inside the Ghost tab.</div>
+      </div>
+      <div class="step-visual reveal">
+        <div class="shot-frame"><img src="assets/img/screens/ghost-mode.png" alt="Dhurta Ghost Mode tab, real capture"></div>
+        <p class="render-note">Real screenshot.</p>
+      </div>
+    </div>
+
+    <div class="step" id="step-3">
+      <div class="step-copy reveal">
+        <span class="step-num">STEP 3</span>
+        <h3>Route through the built-in VPN</h3>
+        <p>Dhurta ships a free built-in VPN with a server picker, plus Anti-Fingerprint and WebRTC blocking as separate toggles — or bundle all of it into one switch as Chakra Shield.</p>
+        <ol>
+          <li>Open the <strong>Security &amp; VPN</strong> panel from the sidebar.</li>
+          <li>Toggle <strong>Free VPN</strong> on and pick a server location.</li>
+          <li>Toggle <strong>Anti-Fingerprint</strong> and <strong>Block WebRTC Leaks</strong> alongside it.</li>
+        </ol>
+        <div class="step-tip"><strong>Tip —</strong> or skip the manual toggles entirely and switch to Chakra Shield from the Omni panel — same protections, one click.</div>
+      </div>
+      <div class="step-visual reveal">
+        <div class="shot-frame"><img src="assets/img/screens/security-vpn.png" alt="Dhurta Security and VPN panel, real capture"></div>
+        <p class="render-note">Real screenshot.</p>
+      </div>
+    </div>
+
+    <div class="step" id="step-4">
+      <div class="step-copy reveal">
+        <span class="step-num">STEP 4</span>
+        <h3>Enable Anti-Fingerprint &amp; WebRTC Block</h3>
+        <p>Both are toggles in the same Security panel, and both are off by default — turn them on deliberately, based on your own risk tolerance.</p>
+        <ol>
+          <li>In the <strong>Security</strong> panel, switch on <strong>Anti-Fingerprint</strong>.</li>
+          <li>Switch on <strong>Block WebRTC</strong>.</li>
+          <li>Some canvas-heavy sites may behave differently with fingerprint noise on — see Troubleshooting if something breaks.</li>
+        </ol>
+        <div class="step-tip"><strong>Heads up —</strong> these two settings change how pages see your browser. Test the sites you rely on daily after switching them on.</div>
+      </div>
+      <div class="step-visual reveal">
+        <div class="dwin">
+          <div class="dwin-title"><span class="dwin-dot" style="background:#ff5f57;"></span><span class="dwin-dot" style="background:#febc2e;"></span><span class="dwin-dot" style="background:#28c840;"></span></div>
+          <div class="dwin-tabs"><div class="dwin-tab active"><span class="dot"></span> Security</div></div>
+          <div class="dwin-url"><div class="dwin-url-pill">🔒 dhurta://security</div></div>
+          <div class="dwin-body">
+            <div class="dwin-side"><div class="si active"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h13"/></svg></div></div>
+            <div class="dwin-main">
+              <div class="dwin-card"><div class="row"><span>Anti-Fingerprint</span><div class="dwin-toggle on"><div class="knob"></div></div></div></div>
+              <div class="dwin-card"><div class="row"><span>Block WebRTC</span><div class="dwin-toggle on"><div class="knob"></div></div></div></div>
+              <div class="dwin-card"><div class="row"><span>Auto-Clean</span><div class="dwin-toggle"><div class="knob"></div></div></div></div>
+            </div>
+          </div>
+        </div>
+        <p class="render-note">Illustrative render — not a live capture.</p>
+      </div>
+    </div>
+
+    <div class="step" id="step-5">
+      <div class="step-copy reveal">
+        <span class="step-num">STEP 5</span>
+        <h3>Pair two browsers with Connect</h3>
+        <p>Connect moves sessions and data directly between two Dhurta installs — no server holds the payload in between.</p>
+        <ol>
+          <li>Open <strong>Connect</strong> from the sidebar on the first machine — it shows a <strong>6-digit code</strong>.</li>
+          <li>On the second machine, open Connect and <strong>enter that code</strong>.</li>
+          <li>Once paired, choose what to send across.</li>
+        </ol>
+        <div class="step-tip"><strong>Note —</strong> the code expires after a short window — regenerate it if the pairing times out.</div>
+      </div>
+      <div class="step-visual reveal">
+        <div class="dwin">
+          <div class="dwin-title"><span class="dwin-dot" style="background:#ff5f57;"></span><span class="dwin-dot" style="background:#febc2e;"></span><span class="dwin-dot" style="background:#28c840;"></span></div>
+          <div class="dwin-tabs"><div class="dwin-tab active"><span class="dot"></span> Connect</div></div>
+          <div class="dwin-url"><div class="dwin-url-pill">🔒 dhurta://connect</div></div>
+          <div class="dwin-body">
+            <div class="dwin-side"><div class="si active"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 3v6M12 15v6M3 12h6M15 12h6"/></svg></div></div>
+            <div class="dwin-main" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px;">
+              <span class="mono" style="font-size:0.7rem;color:#8b81b8;letter-spacing:0.1em;">YOUR PAIRING CODE</span>
+              <span class="mono" style="font-size:1.8rem; letter-spacing:0.3em; background:linear-gradient(90deg,var(--cyan),var(--magenta)); -webkit-background-clip:text; background-clip:text; color:transparent;">4 8 1 9 2 6</span>
+              <span class="cursor-blip"></span>
+            </div>
+          </div>
+        </div>
+        <p class="render-note">Illustrative render — not a live capture.</p>
+      </div>
+    </div>
+
+    <div class="step" id="step-6">
+      <div class="step-copy reveal">
+        <span class="step-num">STEP 6</span>
+        <h3>Check the Transparency Dashboard</h3>
+        <p>The eye icon in the sidebar opens a real-time readout of everything Dhurta has stored about you, locally.</p>
+        <ol>
+          <li>Click the <strong>Transparency</strong> (eye) icon in the sidebar.</li>
+          <li>See real numbers: database size, browsing history count, bookmarks, loaded extensions, and every stored setting as raw key/value pairs.</li>
+          <li>Click <strong>Export My Data (JSON)</strong> to take the whole thing with you.</li>
+        </ol>
+        <div class="step-tip"><strong>Tip —</strong> this is also how you check that security toggles actually reset to <code>false</code> after a data wipe.</div>
+      </div>
+      <div class="step-visual reveal">
+        <div class="shot-frame"><img src="assets/img/screens/transparency.png" alt="Dhurta Transparency Dashboard, real capture"></div>
+        <p class="render-note">Real screenshot.</p>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <h5>Dhurta</h5>
+        <p style="color:var(--ink-dim); font-size:0.88rem; max-width:32ch;">A sovereign, privacy-first desktop browser. Built for people who'd rather own their browser than rent it.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Site</h5>
+        <a href="index.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="modes.html">Modes</a>
+        <a href="tools.html">Tools</a>
+        <a href="guide.html">Guide</a>
+        <a href="troubleshooting.html">Troubleshooting</a>
+      </div>
+      <div class="foot-col">
+        <h5>Project</h5>
+        <a href="#">Changelog</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+      </div>
+      <div class="foot-col">
+        <h5>Status</h5>
+        <p class="mono" style="font-size:0.8rem; color:var(--good);">● v1.0.8 — active development</p>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <div class="foot-copy">© 2026 Dhurta.inc. All rights reserved. Proprietary software — see <a href="https://github.com/prashantkeshr/Dhurta/blob/main/LICENSE" style="color:var(--cyan-soft);">LICENSE</a>.</div>
+        <a href="https://github.com/prashantkeshr/Dhurta" class="btn" style="font-size:0.76rem;padding:8px 16px;">View Source →</a>
+    </div>
+  </div>
+</footer>
+
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle color theme">
+  <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+</button>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

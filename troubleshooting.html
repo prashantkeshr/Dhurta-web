@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Troubleshooting — Dhurta</title>
+<meta name="description" content="Fixes for the most common Dhurta issues — VPN, Anti-Fingerprint, extensions, gestures, and data resets.">
+<link rel="icon" href="assets/img/dhurta-logo.png">
+<link rel="stylesheet" href="assets/css/styles.css">
+<style>
+  .page-hero { padding: 70px 0 20px; text-align: center; }
+  .page-hero h1 { font-size: clamp(2rem, 4.4vw, 3.2rem); }
+  .page-hero p { color: var(--ink-dim); max-width: 54ch; margin: 18px auto 0; text-transform: none; }
+
+  .search-box {
+    max-width: 480px; margin: 32px auto 0; position: relative;
+  }
+  .search-box input {
+    width: 100%; padding: 13px 18px 13px 42px; border-radius: 30px;
+    border: 1px solid var(--line-strong); background: var(--surface);
+    color: var(--ink); font-size: 0.92rem;
+  }
+  .search-box input::placeholder { color: var(--ink-faint); }
+  .search-box input:focus { outline: 2px solid var(--cyan); outline-offset: 2px; }
+  .search-box svg { position: absolute; left: 15px; top: 50%; translate: 0 -50%; width: 16px; height: 16px; stroke: var(--ink-faint); fill: none; stroke-width: 1.8; }
+
+  .cat-nav { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
+  .cat-nav a {
+    text-decoration: none; font-family: ui-monospace, monospace; font-size: 0.76rem;
+    color: var(--ink-dim); border: 1px solid var(--line); padding: 8px 16px; border-radius: 20px;
+  }
+  .cat-nav a:hover { color: var(--cyan); border-color: var(--line-strong); }
+
+  .faq-group { margin-bottom: 20px; }
+  .faq-group h2 { font-size: 1.4rem; margin-bottom: 20px; text-transform: none; }
+
+  details.faq {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 4px 20px;
+    margin-bottom: 12px;
+    background: linear-gradient(160deg, var(--surface), transparent);
+    transition: border-color 0.2s ease;
+  }
+  details.faq[open] { border-color: var(--line-strong); box-shadow: var(--glow-cyan); }
+  details.faq summary {
+    cursor: pointer; list-style: none;
+    padding: 18px 0; font-weight: 700; font-size: 0.98rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  }
+  details.faq summary::-webkit-details-marker { display: none; }
+  details.faq summary::after {
+    content: "+"; font-family: ui-monospace, monospace; font-size: 1.3rem; color: var(--cyan);
+    transition: transform 0.2s ease; flex: none;
+  }
+  details.faq[open] summary::after { transform: rotate(45deg); }
+  .faq-body { padding: 0 0 20px; color: var(--ink-dim); font-size: 0.92rem; }
+  .faq-body p { margin: 0 0 10px; }
+  .faq-body code {
+    background: var(--surface-2); padding: 2px 7px; border-radius: 5px;
+    font-family: ui-monospace, monospace; font-size: 0.85em; color: var(--cyan-soft);
+  }
+  .faq-tag {
+    display: inline-block; margin-top: 6px; font-family: ui-monospace, monospace;
+    font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint);
+  }
+
+  .still-stuck {
+    text-align: center; padding: 60px 30px; border-radius: 22px; margin-top: 40px;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--violet) 26%, var(--bg)), color-mix(in srgb, var(--cyan) 14%, var(--bg)) 70%);
+    border: 1px solid var(--line-strong);
+  }
+  .still-stuck h3 { font-size: 1.4rem; margin-bottom: 12px; }
+  .still-stuck p { color: var(--ink-dim); max-width: 46ch; margin: 0 auto 22px; text-transform: none; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <img src="assets/img/dhurta-logo.png" alt="Dhurta emblem">
+      <span class="brand-word">Dhurta</span>
+    </a>
+    <nav class="links">
+      <a href="index.html">Home</a>
+      <a href="features.html">Features</a>
+      <a href="modes.html">Modes</a>
+      <a href="tools.html">Tools</a>
+      <a href="guide.html">Guide</a>
+      <a href="troubleshooting.html" aria-current="page">Troubleshooting</a>
+    </nav>
+    <a href="index.html#download" class="btn btn-primary">Download</a>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">Troubleshooting</span>
+      <h1>Something not working right?</h1>
+      <p>Most issues here come from a security toggle interacting with a specific site, not a broken install. Start with the category closest to your problem.</p>
+      <div class="search-box">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input type="text" id="faqSearch" placeholder="Search issues — e.g. VPN, extensions, video">
+      </div>
+      <div class="cat-nav">
+        <a href="#privacy">Privacy toggles</a>
+        <a href="#vpn">VPN &amp; Connect</a>
+        <a href="#media">Extensions &amp; media</a>
+        <a href="#perf">Gestures &amp; performance</a>
+        <a href="#reset">Data &amp; resets</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="privacy" style="padding-top:40px;">
+    <div class="wrap">
+      <div class="faq-group">
+        <h2>Privacy toggles</h2>
+
+        <details class="faq">
+          <summary>A video site won't play, or throws a playback error, after I turned on Anti-Fingerprint</summary>
+          <div class="faq-body">
+            <p>Anti-Fingerprint adds deliberate noise to canvas, audio and WebGL reads to make your browser harder to identify. Some sites — video platforms in particular — run an integrity check against canvas output, and noisy canvas data can trip that check.</p>
+            <p>Turn <strong>Anti-Fingerprint</strong> off in the Security panel for that session, reload the tab, and the playback should return to normal. This is a real trade-off of the feature, not a bug — it's why the toggle defaults to off.</p>
+            <span class="faq-tag">Security panel</span>
+          </div>
+        </details>
+
+        <details class="faq">
+          <summary>The warmth / display panel doesn't seem to open as a dropdown from the URL bar</summary>
+          <div class="faq-body">
+            <p>Web page content in Dhurta renders in a layer that sits above the rest of the interface. To keep controls clickable, some panels — like the download tray and warmth slider — are built to open <em>inline</em> within the URL bar's own height instead of dropping down over the page.</p>
+            <p>If a panel looks clipped, try widening the window slightly, or look for the control expanding within the bar itself rather than below it.</p>
+            <span class="faq-tag">Interface behavior</span>
+          </div>
+        </details>
+
+        <details class="faq">
+          <summary>Ghost Mode tabs still show up in my regular history</summary>
+          <div class="faq-body">
+            <p>They shouldn't — Ghost tabs use a separate in-memory session and are never written to the local SQLite history. If you're seeing entries that look like a Ghost session in your Data Hub, confirm the tab was actually opened as <strong>Ghost Tab</strong> (right-click → Ghost Tab) and not a regular tab in a private-looking state.</p>
+            <span class="faq-tag">Ghost Mode</span>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="vpn">
+    <div class="wrap">
+      <div class="faq-group">
+        <h2>VPN &amp; Connect</h2>
+
+        <details class="faq">
+          <summary>A site still shows my old region after I switched VPN countries</summary>
+          <div class="faq-body">
+            <p>The proxy applies to all sessions as soon as you change the country selector, but an already-loaded page may be holding onto a connection it opened before the switch. Hard-refresh the tab (<code>Ctrl+Shift+R</code>) or open a new tab to confirm the new route.</p>
+            <span class="faq-tag">Security panel — VPN</span>
+          </div>
+        </details>
+
+        <details class="faq">
+          <summary>My Connect pairing code expired before the other device entered it</summary>
+          <div class="faq-body">
+            <p>Pairing codes are short-lived by design, so a stale code can't be reused later. Reopen <strong>Connect</strong> on the first device to generate a fresh code, then enter it promptly on the second.</p>
+            <span class="faq-tag">Connect</span>
+          </div>
+        </details>
+
+        <details class="faq">
+          <summary>Connect isn't finding the other Dhurta instance</summary>
+          <div class="faq-body">
+            <p>Both windows need to be on and actively showing the Connect panel at the same time — it isn't a background listener. Double-check the code was typed exactly as shown, including leading digits.</p>
+            <span class="faq-tag">Connect</span>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="media">
+    <div class="wrap">
+      <div class="faq-group">
+        <h2>Extensions &amp; media</h2>
+
+        <details class="faq">
+          <summary>"Load unpacked" fails or shows nothing after selecting a folder</summary>
+          <div class="faq-body">
+            <p>Dhurta expects the folder you select to directly contain a <code>manifest.json</code> — not a parent folder with the extension nested a level deeper. Point the file picker at the exact folder with <code>manifest.json</code> inside it.</p>
+            <span class="faq-tag">Extensions panel</span>
+          </div>
+        </details>
+
+        <details class="faq">
+          <summary>Picture-in-Picture doesn't appear on a video I'm hovering</summary>
+          <div class="faq-body">
+            <p>The floating PiP button only injects on standard HTML5 <code>&lt;video&gt;</code> elements. Some sites use custom players that block the native video controls — for those, use the PiP button in the URL bar instead, which falls back to popping out the whole page.</p>
+            <span class="faq-tag">Picture-in-Picture</span>
+          </div>
+        </details>
+
+        <details class="faq">
+          <summary>A page's popup window opened as a new tab instead</summary>
+          <div class="faq-body">
+            <p>That's intentional — Dhurta intercepts popup windows and opens them as tabs so they can't hide outside the sidebar or spawn always-on-top ad windows.</p>
+            <span class="faq-tag">Interface behavior</span>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="perf">
+    <div class="wrap">
+      <div class="faq-group">
+        <h2>Gestures &amp; performance</h2>
+
+        <details class="faq">
+          <summary>Two-finger swipe back/forward isn't registering on my trackpad</summary>
+          <div class="faq-body">
+            <p>Check your OS trackpad settings first — some drivers intercept horizontal two-finger swipes for their own workspace-switching gesture before Dhurta ever sees the event. Disabling that OS-level gesture usually resolves it.</p>
+            <span class="faq-tag">Gestures</span>
+          </div>
+        </details>
+
+        <details class="faq">
+          <summary>Pinch-to-zoom feels jumpy on a page</summary>
+          <div class="faq-body">
+            <p>Zoom is clamped between 25% and 500% per page. If a page defines its own touch/pinch handling (some canvas-heavy apps do), it can compete with Dhurta's zoom gesture — try the <code>Ctrl</code> + scroll or the zoom buttons in the URL bar instead.</p>
+            <span class="faq-tag">Gestures</span>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="reset">
+    <div class="wrap">
+      <div class="faq-group">
+        <h2>Data &amp; resets</h2>
+
+        <details class="faq">
+          <summary>After wiping my data, all my security toggles reset to off</summary>
+          <div class="faq-body">
+            <p>That's expected. A full data wipe deletes the local database entirely, and every setting — including Anti-Fingerprint, WebRTC blocking, and VPN — reseeds to its default, which is off. Re-enable whichever toggles you want from the Security panel after a wipe or reinstall.</p>
+            <span class="faq-tag">Settings — Privacy</span>
+          </div>
+        </details>
+
+        <details class="faq">
+          <summary>My wallpaper disappeared after moving my picture library</summary>
+          <div class="faq-body">
+            <p>Wallpapers are stored as embedded data, not a link to the original file, so moving or renaming the source image shouldn't affect it. If it did disappear, re-select it from Settings → Appearance and it will be re-embedded.</p>
+            <span class="faq-tag">Settings — Appearance</span>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="still-stuck reveal">
+        <h3>Still stuck?</h3>
+        <p>If none of the above matches what you're seeing, check the changelog for known issues in your version before filing a report.</p>
+        <a href="#" class="btn btn-primary">View Changelog</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <h5>Dhurta</h5>
+        <p style="color:var(--ink-dim); font-size:0.88rem; max-width:32ch;">A sovereign, privacy-first desktop browser. Built for people who'd rather own their browser than rent it.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Site</h5>
+        <a href="index.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="modes.html">Modes</a>
+        <a href="tools.html">Tools</a>
+        <a href="guide.html">Guide</a>
+        <a href="troubleshooting.html">Troubleshooting</a>
+      </div>
+      <div class="foot-col">
+        <h5>Project</h5>
+        <a href="#">Changelog</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+      </div>
+      <div class="foot-col">
+        <h5>Status</h5>
+        <p class="mono" style="font-size:0.8rem; color:var(--good);">● v1.0.8 — active development</p>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <div class="foot-copy">© 2026 Dhurta.inc. All rights reserved. Proprietary software — see <a href="https://github.com/prashantkeshr/Dhurta/blob/main/LICENSE" style="color:var(--cyan-soft);">LICENSE</a>.</div>
+        <a href="https://github.com/prashantkeshr/Dhurta" class="btn" style="font-size:0.76rem;padding:8px 16px;">View Source →</a>
+    </div>
+  </div>
+</footer>
+
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle color theme">
+  <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+</button>
+
+<script src="assets/js/main.js"></script>
+<script>
+  document.getElementById('faqSearch').addEventListener('input', function (e) {
+    var q = e.target.value.trim().toLowerCase();
+    document.querySelectorAll('details.faq').forEach(function (d) {
+      var text = d.textContent.toLowerCase();
+      var match = !q || text.indexOf(q) !== -1;
+      d.style.display = match ? '' : 'none';
+      if (q && match) d.setAttribute('open', '');
+      if (!q) d.removeAttribute('open');
+    });
+    document.querySelectorAll('.faq-group').forEach(function (g) {
+      var anyVisible = Array.prototype.some.call(g.querySelectorAll('details.faq'), function (d) { return d.style.display !== 'none'; });
+      g.style.display = anyVisible ? '' : 'none';
+    });
+  });
+</script>
+</body>
+</html>
