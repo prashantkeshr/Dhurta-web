@@ -400,9 +400,70 @@ table.compare th {
 .yes { color: var(--good); font-weight: 700; }
 .no { color: var(--ink-faint); }
 
+/* ── Privacy Stack ── */
+.privacy-stack { display: flex; flex-direction: column; gap: 16px; max-width: 860px; margin: 0 auto; }
+.pstack-layer {
+  display: grid; grid-template-columns: 56px 1fr auto; align-items: center; gap: 20px;
+  padding: 22px 24px; border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--layer-color) 30%, transparent);
+  background: color-mix(in srgb, var(--layer-color) 5%, var(--surface));
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.pstack-layer:hover { transform: translateX(4px); box-shadow: -4px 0 0 var(--layer-color); }
+.pstack-icon {
+  width: 48px; height: 48px; border-radius: 10px; display: flex; align-items: center; justify-content: center;
+  background: color-mix(in srgb, var(--layer-color) 12%, transparent);
+  color: var(--layer-color); flex-shrink: 0;
+}
+.pstack-body h4 { font-size: 1rem; text-transform: none; margin-bottom: 6px; color: var(--ink); }
+.pstack-body p { font-size: 0.86rem; color: var(--ink-dim); text-transform: none; margin: 0; }
+.pstack-body code { font-size: 0.8rem; color: var(--cyan); background: color-mix(in srgb, var(--cyan) 10%, transparent); padding: 1px 5px; border-radius: 3px; }
+.pstack-badge {
+  font-family: ui-monospace, monospace; font-size: 0.65rem; letter-spacing: 0.12em;
+  padding: 4px 10px; border-radius: 20px; white-space: nowrap;
+  color: var(--layer-color); border: 1px solid color-mix(in srgb, var(--layer-color) 40%, transparent);
+}
+
+/* ── Anonymity Strip ── */
+.anon-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 56px; }
+.anon-card {
+  display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px;
+  padding: 28px 18px; border-radius: 12px; border: 1px solid var(--line);
+  background: var(--surface); transition: border-color 0.2s, transform 0.2s;
+}
+.anon-card:hover { border-color: var(--cyan); transform: translateY(-3px); }
+.anon-card strong { color: var(--ink); font-size: 0.95rem; }
+.anon-card span { font-size: 0.82rem; color: var(--ink-dim); text-transform: none; }
+
+/* ── Avatar Halo ── */
+.avatar-halo {
+  position: absolute; inset: -20px; border-radius: 50%;
+  background: radial-gradient(ellipse at center, color-mix(in srgb, var(--cyan) 18%, transparent) 0%, transparent 70%);
+  animation: halo-pulse 3s ease-in-out infinite;
+}
+@keyframes halo-pulse { 0%,100% { opacity: 0.5; transform: scale(1); } 50% { opacity: 1; transform: scale(1.05); } }
+@media (prefers-reduced-motion: reduce) { .avatar-halo { animation: none; } }
+
+/* ── Legal pages ── */
+.legal-body { max-width: 72ch; margin: 0 auto; padding: 60px 0 80px; }
+.legal-body h1 { font-size: clamp(1.8rem,3.4vw,2.6rem); margin-bottom: 8px; }
+.legal-body .meta { color: var(--ink-faint); font-size: 0.8rem; font-family: ui-monospace, monospace; margin-bottom: 40px; display: block; }
+.legal-body h2 { font-size: 1.1rem; margin: 36px 0 10px; color: var(--cyan); text-transform: none; }
+.legal-body p, .legal-body li { color: var(--ink-dim); font-size: 0.95rem; text-transform: none; line-height: 1.75; margin-bottom: 12px; }
+.legal-body ul { padding-left: 20px; }
+.legal-body a { color: var(--cyan); }
+.legal-body .callout {
+  padding: 16px 20px; border-radius: 8px; border-left: 3px solid var(--cyan);
+  background: color-mix(in srgb, var(--cyan) 6%, transparent); margin: 24px 0;
+}
+.legal-body .callout p { margin: 0; }
+
 @media (max-width: 960px) {
   nav.links { display: none; }
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
   .foot-grid { grid-template-columns: 1fr 1fr; }
   .dwin-body { flex-direction: column; }
+  .pstack-layer { grid-template-columns: 48px 1fr; }
+  .pstack-badge { display: none; }
+  .anon-strip { grid-template-columns: 1fr 1fr; }
 }

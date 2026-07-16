@@ -256,6 +256,105 @@
       </div>
     </div>
   </section>
+
+  <!-- PRIVACY ARCHITECTURE SECTION -->
+  <section class="wrap" style="padding:80px 0 60px;">
+    <div style="text-align:center; margin-bottom:56px;">
+      <span class="eyebrow">How it actually works</span>
+      <h2 style="font-size:clamp(1.8rem,3.6vw,2.8rem); margin-top:12px;">Four layers. Zero compromise.</h2>
+      <p style="color:var(--ink-dim); max-width:52ch; margin:16px auto 0;">Every session in Dhurta passes through independently verifiable protection layers — not marketing claims, not opt-ins. Defaults that protect.</p>
+    </div>
+
+    <!-- Layer stack diagram -->
+    <div class="privacy-stack">
+      <div class="pstack-layer" style="--layer-color:#ff0055;">
+        <div class="pstack-icon">
+          <svg width="28" height="28" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M8 1.5L2.5 4v3.8c0 3.2 2.4 5.9 5.5 6.7 3.1-.8 5.5-3.5 5.5-6.7V4L8 1.5z"/>
+            <circle cx="8" cy="7.6" r="1.8" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
+        <div class="pstack-body">
+          <h4>Ghost Mode — Real Tor Onion Routing</h4>
+          <p>Traffic exits through the Tor network — not a proxy, not a simulation. Verify it yourself at <code>check.torproject.org</code> from inside a Ghost tab. Session lives in memory; nothing written to disk.</p>
+        </div>
+        <span class="pstack-badge">Verifiable</span>
+      </div>
+
+      <div class="pstack-layer" style="--layer-color:#ff6a00;">
+        <div class="pstack-icon">
+          <img src="assets/img/chakra-icon.png" alt="Chakra Shield" style="width:28px;height:28px;object-fit:contain;">
+        </div>
+        <div class="pstack-body">
+          <h4>Chakra Shield — Bundle Mode</h4>
+          <p>One switch enables VPN + Anti-Fingerprint + WebRTC Block simultaneously. No partial activation. If VPN fails to connect, Dhurta warns you instead of silently falling back.</p>
+        </div>
+        <span class="pstack-badge">Atomic</span>
+      </div>
+
+      <div class="pstack-layer" style="--layer-color:#00f5d4;">
+        <div class="pstack-icon">
+          <svg width="28" height="28" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M8 1.5L2 4v4c0 3 2.5 5.5 6 6.5 3.5-1 6-3.5 6-6.5V4L8 1.5z"/>
+            <polyline points="5.5,8 7,10 11,6"/>
+          </svg>
+        </div>
+        <div class="pstack-body">
+          <h4>Anti-Fingerprint + WebRTC Block</h4>
+          <p>Canvas, AudioContext, and font metrics return spoofed noise — making cross-site fingerprint tracking statistically incoherent. WebRTC is fully disabled so your real IP cannot leak through media APIs.</p>
+        </div>
+        <span class="pstack-badge">Always-on</span>
+      </div>
+
+      <div class="pstack-layer" style="--layer-color:#a78bfa;">
+        <div class="pstack-icon">
+          <svg width="28" height="28" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+            <ellipse cx="8" cy="4" rx="5" ry="2"/>
+            <path d="M3 4v4c0 1.1 2.24 2 5 2s5-.9 5-2V4"/>
+            <path d="M3 8v4c0 1.1 2.24 2 5 2s5-.9 5-2V8"/>
+          </svg>
+        </div>
+        <div class="pstack-body">
+          <h4>Local-Only SQLite — Zero Telemetry</h4>
+          <p>All your data — history, bookmarks, settings, extensions — lives in a single SQLite file on your machine. Nothing is synced to Dhurta servers because there are none. Check the Transparency Dashboard to see every byte stored about you.</p>
+        </div>
+        <span class="pstack-badge">Auditable</span>
+      </div>
+    </div>
+
+    <!-- Anonymity proof strip -->
+    <div class="anon-strip reveal">
+      <div class="anon-card">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/><line x1="17" y1="3" x2="21" y2="7"/><line x1="21" y1="3" x2="17" y2="7"/></svg>
+        <strong>No Account</strong>
+        <span>No email. No login. No identity linked to your usage.</span>
+      </div>
+      <div class="anon-card">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.5"><path d="M3 3l18 18M10.5 10.7a4 4 0 0 0 5.2 5.2M6.2 6.2A4 4 0 0 0 12 16a4 4 0 0 0 1.3-.2"/><path d="M3 12c0 2.2.7 4.3 2 6M21 12a9 9 0 0 0-1.7-5.3"/></svg>
+        <strong>No Tracking</strong>
+        <span>No analytics SDK. No crash reporter phoning home. Ever.</span>
+      </div>
+      <div class="anon-card">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <strong>No Cloud Storage</strong>
+        <span>Your data never leaves your device unless you export it.</span>
+      </div>
+      <div class="anon-card">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        <strong>Real Tor, Not a Proxy</strong>
+        <span>Bundled Tor binary. Verified onion routing, not marketing copy.</span>
+      </div>
+    </div>
+
+    <!-- Avatar visual -->
+    <div style="text-align:center; margin-top:64px; position:relative;">
+      <div style="position:relative; display:inline-block;">
+        <div class="avatar-halo"></div>
+        <img src="assets/img/dhurta-robo.png" alt="Dhurta anonymous avatar" style="width:clamp(200px,30vw,360px); position:relative; z-index:1; filter:drop-shadow(0 0 40px color-mix(in srgb, var(--cyan) 30%, transparent));">
+      </div>
+      <p style="margin-top:24px; color:var(--ink-dim); font-size:0.95rem; max-width:44ch; margin-inline:auto;">This is what browsing looks like when no one is watching — because nothing is watching.</p>
+    </div>
+  </section>
 </main>
 
 <footer class="site-footer">
@@ -275,10 +374,10 @@
         <a href="troubleshooting.html">Troubleshooting</a>
       </div>
       <div class="foot-col">
-        <h5>Project</h5>
-        <a href="#">Changelog</a>
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Use</a>
+        <h5>Legal</h5>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+        <a href="https://github.com/prashantkeshr/Dhurta/blob/main/LICENSE">License</a>
       </div>
       <div class="foot-col">
         <h5>Status</h5>
@@ -341,6 +440,42 @@
     document.getElementById('inspectPanel').classList.toggle('open');
   });
 })();
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Dhurta",
+  "operatingSystem": "Windows, macOS, Linux",
+  "applicationCategory": "BrowserApplication",
+  "description": "A privacy-first sovereign desktop browser with real Tor integration, Ghost Mode, Chakra Shield, Anti-Fingerprint, built-in VPN, and zero telemetry.",
+  "url": "https://dhurta.in",
+  "downloadUrl": "https://github.com/prashantkeshr/Dhurta/releases/latest",
+  "softwareVersion": "1.0.8",
+  "license": "https://github.com/prashantkeshr/Dhurta/blob/main/LICENSE",
+  "author": {
+    "@type": "Organization",
+    "name": "Dhurta.inc",
+    "url": "https://dhurta.in",
+    "email": "blackscont00@gmail.com"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "Ghost Mode with real Tor onion routing",
+    "Chakra Shield bundle mode",
+    "Anti-Fingerprint",
+    "WebRTC Block",
+    "Built-in VPN",
+    "Local SQLite — zero cloud sync",
+    "Transparency Dashboard",
+    "Browser Connect",
+    "Dhurta Connect P2P encrypted chat"
+  ]
+}
 </script>
 </body>
 </html>
